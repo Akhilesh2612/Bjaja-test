@@ -8,7 +8,7 @@ git commit -m "Initial commit - Bajaj Finserv Health Challenge"
 echo.
 echo Git repository initialized and files committed locally!
 echo.
-set /p repo_url="https://github.com/aditya-projectx/bajaj-test-2.git"
+set /p repo_url="Enter your GitHub Repository URL (e.g., https://github.com/username/repo-name.git): "
 if "%repo_url%"=="" goto error
 git remote add origin %repo_url%
 git branch -M main
