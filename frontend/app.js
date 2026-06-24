@@ -47,7 +47,11 @@ document.getElementById("submitBtn").addEventListener("click", async () => {
   const resultsContent = document.getElementById("resultsContent");
   const placeholderContent = document.getElementById("placeholderContent");
   const statusDot = document.getElementById("statusIndicator");
-  const baseApiUrl = document.getElementById("apiUrl").value.trim().replace(/\/+$/, "");
+  let baseApiUrl = document.getElementById("apiUrl").value.trim().replace(/\/+$/, "");
+  // If empty, use current server origin
+  if (!baseApiUrl) {
+    baseApiUrl = window.location.origin;
+  }
 
   let rawInput = document.getElementById("nodeInput").value.trim();
   let parsedData = [];
