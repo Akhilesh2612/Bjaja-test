@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bajaj Finserv Health - Chitkara Challenge</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="background-radial"></div>
+  <div class="background-glow blur-1"></div>
+  <div class="background-glow blur-2"></div>
+
+  <main class="app-container">
+    <header class="app-header">
+      <div class="badge">Bajaj Finserv Health Limited</div>
+      <h1>Chitkara Engineering Challenge</h1>
+      <p class="subtitle">Process hierarchical nodes, detect loops, and visualize structures in real-time.</p>
+    </header>
+
+    <div class="layout-grid">
+      <section class="card config-panel">
+        <h2>Input Configuration</h2>
+        
+        <div class="form-group">
+          <label for="apiUrl">API Base URL</label>
+          <input type="url" id="apiUrl" value="http://localhost:5000" placeholder="https://yourname-bfhl.herokuapp.com">
+          <small class="helper-text">Point this to your local server or deployed URL.</small>
+        </div>
+
+        <div class="form-group">
+          <label for="nodeInput">Node Relationship Data</label>
+          <textarea id="nodeInput" rows="7" placeholder='["A->B", "A->C", "B->D"]'></textarea>
+          <small class="helper-text">Accepts a JSON array of strings or comma-separated pairs.</small>
+        </div>
+
+        <button id="submitBtn" class="btn-primary">
+          <span>Process Relationships</span>
+          <div class="spinner hidden"></div>
+        </button>
+      </section>
+
+      <section class="card output-panel">
+        <div class="panel-header">
+          <h2>Analysis Results</h2>
+          <div id="statusIndicator" class="status-dot"></div>
+        </div>
+
+        <div id="errorMessage" class="error-box hidden"></div>
+
+        <div id="resultsContent" class="hidden">
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-value" id="statTrees">0</div>
+              <div class="stat-label">Total Trees</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value" id="statCycles">0</div>
+              <div class="stat-label">Total Cycles</div>
+            </div>
+            <div class="stat-card highlight">
+              <div class="stat-value" id="statLargest">N/A</div>
+              <div class="stat-label">Largest Tree Root</div>
+            </div>
+          </div>
+
+          <div class="results-tabs">
+            <button class="tab-btn active" data-tab="visual">Tree Visualization</button>
+            <button class="tab-btn" data-tab="details">Details & Lists</button>
+            <button class="tab-btn" data-tab="json">Raw JSON</button>
+          </div>
+
+          <div class="tab-content" id="tab-visual">
+            <div class="visualizer-container" id="treeVisualizer"></div>
+          </div>
+
+          <div class="tab-content hidden" id="tab-details">
+            <div class="list-details">
+              <div class="detail-section">
+                <h3>Duplicate Edges</h3>
+                <div class="tags-container" id="duplicateList"></div>
+              </div>
+              <div class="detail-section">
+                <h3>Invalid Entries</h3>
+                <div class="tags-container" id="invalidList"></div>
+              </div>
+              <div class="student-info">
+                <h3>Submitter Identity</h3>
+                <div class="info-row">
+                  <span class="info-label">User ID:</span>
+                  <span class="info-value" id="identityUser"></span>
+                </div>
+                <div class="info-row">
+                  <span class="info-label">Email Address:</span>
+                  <span class="info-value" id="identityEmail"></span>
+                </div>
+                <div class="info-row">
+                  <span class="info-label">Roll Number:</span>
+                  <span class="info-value" id="identityRoll"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tab-content hidden" id="tab-json">
+            <pre class="json-code"><code id="jsonContent"></code></pre>
+          </div>
+        </div>
+
+        <div id="placeholderContent" class="placeholder-empty">
+          <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 18a3.75 3.75 0 00.495-7.467 5.99 5.99 0 00-1.925 3.546 5.974 5.974 0 01-2.133-1A3.75 3.75 0 0012 18z" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 18a3.75 3.75 0 00.495-7.467 5.99 5.99 0 00-1.925 3.546 5.974 5.974 0 01-2.133-1A3.75 3.75 0 0012 18z" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M22.5 12c0 5.799-4.701 10.5-10.5 10.5S1.5 17.799 1.5 12 6.201 1.5 12 1.5 22.5 6.201 22.5 12z" />
+          </svg>
+          <p>Configure input and press Process Relationships to see the graph results.</p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
